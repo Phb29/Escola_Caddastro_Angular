@@ -3,32 +3,33 @@ import { ITurma } from '../class/ITurma.interface';
 import { Aluno } from '../class/Aluno';
 import { Turma } from '../class/TurmaAbstract';
 import { Escola } from '../class/Escola';
+import { IAluno } from '../class/Aluno.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlunoServiceService {
 
-  private aluno!: Aluno
-  private turma!: Turma
+  private aluno!: IAluno;
+  private turma!: ITurma;
   private escola: Escola[] = [];
 
   constructor() { }
 
-  setAluno(aluno: any) {
-    this.aluno = aluno;
+  setAluno(aluno:any) {
+    this.aluno = aluno; 
   }
-  getAluno() {
+    getAluno():IAluno {
     return this.aluno;
   }
   setTurma(turma: any) {
     this.turma = turma
   }
-  getTurma() {
+  getTurma():Turma {
     return this.turma;
   }
-  addEscola(escola: Escola) {
-    this.escola.push(escola)
+  addEscola(escolas: Escola) {
+    this.escola.push(escolas)
   }
   getEscola(): Escola[] {
     return this.escola

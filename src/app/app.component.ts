@@ -14,7 +14,7 @@ import { TumraMedia } from '../class/TurmaMedia';
 })
 export class AppComponent {
   title = 'AlunoCadastro';
-  aluno = { nome: '', idade: 0, sexo: '' };
+  aluno = { nome: '' };
   tipoAluno = 'fundamental';
   tipoTurma = ''
   valorMensalidade!: number;
@@ -25,26 +25,25 @@ export class AppComponent {
 
 
   CriarAluno(): void {
-    if (this.tipoAluno = 'fundamental') {
-      this.aluno = new AlunoFunamental(this.aluno.nome, this.aluno.idade, this.aluno.sexo, 'fundamental');
-      this.tipoTurma = 'infantil'
+    if (this.tipoAluno === 'fundamental') {
+        this.aluno = new AlunoFunamental(this.aluno.nome, 'Fundamental');
+      this.tipoTurma = 'infantil';
+    } else if (this.tipoAluno === 'medio') {
+      this.aluno = new AlunoMedio(this.aluno.nome, 'Medio');
+      this.tipoTurma = 'superior';
     }
-    else if (this.tipoAluno = 'medio') {
-      this.aluno = new AlunoMedio(this.aluno.nome, this.aluno.idade, this.aluno.sexo, 'medio')
-      this.tipoTurma = 'superior'
-    }
+this.alunoService.setAluno(this.aluno)
 
-    this.EscolherTurma()
+    this.EscolherTurma();
   }
-
   ngOnInit() {
 
   }
-  escola(): void {
+  Escola(): void {
     this.CriarAluno();
     let aluno = this.alunoService.getAluno();
     let turma = this.alunoService.getTurma();
-    let escola = new Escola(turma, aluno, this.valorMensalidade)
+    let escola = new Escola(turma, aluno, this.valorMensalidade);
     this.alunoService.addEscola(escola);
   }
 
@@ -52,9 +51,10 @@ export class AppComponent {
     if (this.tipoTurma === 'infantil') {
       this.turma = new TurmaFundamental();
     }
-    else if (this.tipoTurma == 'superior') {
+    else if (this.tipoTurma === 'superior') {
       this.turma = new TumraMedia();
     }
+       this.alunoService.setTurma(this.turma)
   }
 
 }

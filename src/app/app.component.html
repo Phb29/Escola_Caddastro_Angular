@@ -1,51 +1,51 @@
 <div class="container">
-    <div class="jumnotron">
-        <h2>Programa Para Cadastro de alunos</h2>
+    <div class="jumbotron">
+        <h2>Programa Para Cadastro de Alunos</h2>
     </div>
-    <h2>Cadasto Aluno</h2>
+    <h2>Cadastro de Aluno</h2>
 
     <div class="form-group">
         <label>Nome</label>
-        <input [(ngModel)]="aluno.nome" type="text" class=" form-control" placeholder="Nome Do Aluno">
+        <input [(ngModel)]="aluno.nome" type="text" class="form-control" placeholder="Nome do Aluno">
     </div>
-    <div class="form-group">
-        <label>Idade</label>
-        <input [(ngModel)]="aluno.idade" type="number" class="form-control" placeholder="Idade Do Aluno">
-    </div>
-    <div class="form-grn
-oup">
-        <label>Sexo</label>
-        <select [(ngModel)]="aluno.sexo" class="form-control">
-         <option value="">Selecione o Sexo</option>
-             <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-        </select>
-    </div>
+
     <div class="form-group">
         <label>Turma</label>
         <select [(ngModel)]="tipoAluno" class="form-control">
-       <option value="">Selecione o Sexo</option>
-       <option value="fundamental">Fundamental</option>
-      <option value="medio">Ensino Medio </option>
-  </select>
+      <option value="fundamental">Fundamental</option>
+      <option value="medio">Ensino Médio</option>
+    </select>
+        <div class="form-group">
+            <label>Preço da Escola</label>
+            <input type="number" class="form-control" [(ngModel)]="valorMensalidade">
+        </div>
     </div>
-    <button (click)="escola()" class="btn-primary">Fazer Reserva</button>
+    <button (click)="Escola()" class="btn-primary">Fazer Reserva</button>
 
-<div class="mt-4"  *ngIf="alunoService.getEscola().length>0">
-<tr>
-<th>nome</th>
-<th>Idade</th>
-<th>sexo</th>
-<th>nome</th>
+    <div class="mt-4" *ngIf="alunoService.getEscola().length > 0">
+        <table>
+            <h2>Alunos cadastrados</h2>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Turma</th>
+                    <th>Grau</th>
+                    <th>Quantudade</th>
+                    <th>Valor Total</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let escola of alunoService.getEscola()">
+                    <td>{{escola.aluno.nome}}</td>
+                    <td>{{escola.aluno.tipo}}</td>
+                    <td>{{escola.turma.turma}}</td>
+                    <td>{{escola.turma.valor}}</td>
+                    <td>{{escola.ValorTotal()}}</td>
+                    <td></td>
+                </tr>
 
-</tr>
-<h2>Alunos cadastrados</h2>
-
-<table>
-<thead>
-
-</thead>
-</table>
-
-</div>
+            </tbody>
+        </table>
+    </div>
 </div>
